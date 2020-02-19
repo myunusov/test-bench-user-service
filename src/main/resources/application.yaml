@@ -1,0 +1,36 @@
+info:
+  build:
+    artifact: @project.artifactId@
+    name: @project.name@
+    description: @project.description@
+    ersion: @project.version@
+
+spring:
+  application:
+    name: User Service
+
+management:
+  metrics:
+    enable:
+      root: true
+    tags:
+      application: ${spring.application.name}
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  pattern:
+    console: "%d %-5level %logger %msg%n"
+  level:
+    org.springframework.web: INFO
+    guru.springframework.controllers: INFO
