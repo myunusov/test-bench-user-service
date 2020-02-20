@@ -15,7 +15,23 @@
 
     <properties>
         <java.version>11</java.version>
+        <micrometer-jvm-extras.version>0.2.0</micrometer-jvm-extras.version>
+        <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
+        <annotations.version>16.0.3</annotations.version>
+        <spring-cloud-version>Hoxton.RELEASE</spring-cloud-version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -33,6 +49,12 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -52,13 +74,34 @@
         <dependency>
             <groupId>io.github.mweirauch</groupId>
             <artifactId>micrometer-jvm-extras</artifactId>
-            <version>0.2.0</version>
+            <version>${micrometer-jvm-extras.version}</version>
         </dependency>
 
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
-            <version>6.3</version>
+            <version>${logstash-logback-encoder.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+        </dependency>
+
+        <!-- DbC -->
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>${annotations.version}</version>
         </dependency>
 
         <dependency>

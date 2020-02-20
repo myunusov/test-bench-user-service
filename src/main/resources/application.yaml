@@ -8,6 +8,12 @@ info:
 spring:
   application:
     name: User Service
+  # Zipkin info
+  zipkin:
+    base-url: http://zipkin:9411/
+  sleuth:
+    sampler.probability: 1
+
 
 management:
   metrics:
