@@ -8,12 +8,16 @@ info:
 spring:
   application:
     name: User Service
-  # Zipkin info
   zipkin:
     base-url: http://zipkin:9411/
   sleuth:
     sampler.probability: 1
-
+  datasource:
+    url: jdbc:postgresql://postgres:5432/postgres
+    username: admin
+    password: password
+  jooq:
+    sql-dialect: Postgres
 
 management:
   metrics:
@@ -40,3 +44,4 @@ logging:
   level:
     org.springframework.web: INFO
     guru.springframework.controllers: INFO
+

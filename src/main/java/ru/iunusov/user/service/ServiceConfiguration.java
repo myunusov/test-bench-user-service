@@ -1,28 +1,37 @@
 package ru.iunusov.user.service;
 
-import io.github.mweirauch.micrometer.jvm.extras.ProcessMemoryMetrics;
-import io.github.mweirauch.micrometer.jvm.extras.ProcessThreadMetrics;
-import io.micrometer.core.instrument.binder.MeterBinder;
+import javax.sql.DataSource;
+
+import org.jooq.ExecuteListener;
+import org.jooq.impl.DataSourceConnectionProvider;
+import org.jooq.impl.DefaultConfiguration;
+import org.jooq.impl.DefaultDSLContext;
+import org.jooq.impl.DefaultExecuteListenerProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 
 @Configuration
 public class ServiceConfiguration {
 
-/*    @Bean
-    MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
-        return registry -> registry.config().commonTags("application", "user");
-    }*/
+  @Bean
+  public DataSourceConnectionProvider connectionProvider(final DataSource dataSource) {
+    return new DataSourceConnectionProvider(new TransactionAwareDataSourceProxy(dataSource));
+  }
 
+  @Bean
+  public DefaultDSLContext dsl(final DataSource dataSource) {
+    return new DefaultDSLContext(configuration(dataSource));
+  }
 
-    @Bean
-    public MeterBinder processMemoryMetrics() {
-        return new ProcessMemoryMetrics();
-    }
+  public DefaultConfiguration configuration(final DataSource dataSource) {
+    DefaultConfiguration jooqConfiguration = new DefaultConfiguration();
+    jooqConfiguration.set(connectionProvider(dataSource));
+//    jooqConfiguration.set(new DefaultExecuteListenerProvider(exceptionTransformer()));
+    return jooqConfiguration;
+  }
 
-    @Bean
-    public MeterBinder processThreadMetrics() {
-        return new ProcessThreadMetrics();
-    }
-
+  private ExecuteListener exceptionTransformer() {
+    return null;
+  }
 }
