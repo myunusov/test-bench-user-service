@@ -1,8 +1,20 @@
 FROM adoptopenjdk/openjdk11:jdk-11.0.5_10-alpine as builder
+RUN apk update && \
+    apk add su-exec tzdata libpq postgresql-client postgresql postgresql-contrib && \
+    rm -rf /var/cache/apk/*
+
+ENV POSTGRES_USER postgres
+ENV POSTGRES_DB postgres
+ENV POSTGRES_PASSWORD postgres
+ENV PGDATA /var/lib/postgresql/data
+
 ADD . /src
-WORKDIR /src
-RUN ["chmod", "777", "./mvnw"]
-RUN ./mvnw package -DskipTests
+RUN ["chmod", "-R", "777", "/src"]
+
+USER postgres
+RUN initdb -D /var/lib/postgresql/data
+COPY ./postgres/postgresql.conf /var/lib/postgresql/data/postgresql.conf
+RUN pg_ctl start -D /var/lib/postgresql/data -l /var/lib/postgresql/log.log && cd ./src && ./mvnw package -DskipTests
 
 FROM alpine:3.10.3 as packager
 RUN apk --no-cache add openjdk11-jdk openjdk11-jmods

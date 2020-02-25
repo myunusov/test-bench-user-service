@@ -4,11 +4,9 @@ import java.util.Objects;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.Accessors;
 
 @RequiredArgsConstructor
 @Getter
-@Accessors(fluent = true)
 public abstract class Entity {
   private final String id;
   private final String name;
