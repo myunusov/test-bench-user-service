@@ -4,13 +4,13 @@ import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import ru.iunusov.db.tables.pojos.Users;
 import ru.iunusov.user.domain.User;
 import static java.util.stream.Collectors.toList;
 import static ru.iunusov.db.tables.Users.USERS;
 
-@Repository
+@Service
 @RequiredArgsConstructor
 public class UserRepositoryDefault implements UserRepository {
 

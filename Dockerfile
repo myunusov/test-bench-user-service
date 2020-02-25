@@ -12,7 +12,7 @@ ADD . /src
 RUN ["chmod", "-R", "777", "/src"]
 
 USER postgres
-RUN initdb -D /var/lib/postgresql/data
+RUN initdb -A trust -D /var/lib/postgresql/data
 COPY ./postgres/postgresql.conf /var/lib/postgresql/data/postgresql.conf
 RUN pg_ctl start -D /var/lib/postgresql/data -l /var/lib/postgresql/log.log && cd ./src && ./mvnw package -DskipTests
 
