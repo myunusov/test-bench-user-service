@@ -13,7 +13,7 @@ spring:
   sleuth:
     sampler.probability: 1
   datasource:
-    url: jdbc:postgresql://postgres:5432/postgres
+    url: jdbc:postgresql://postgres:5432/users
     username: admin
     password: password
   jooq:
