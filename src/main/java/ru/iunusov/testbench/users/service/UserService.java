@@ -1,12 +1,12 @@
-package ru.iunusov.user.service;
+package ru.iunusov.testbench.users.service;
 
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.iunusov.user.domain.User;
-import ru.iunusov.user.persistence.UserRepository;
+import ru.iunusov.testbench.users.domain.User;
+import ru.iunusov.testbench.users.persistence.UserRepository;
 
 @Service
 @RequiredArgsConstructor

@@ -14,6 +14,7 @@
     <description>User Microservice</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
 
         <spring.datasource.driverClassName>org.postgresql.Driver</spring.datasource.driverClassName>
@@ -21,12 +22,25 @@
         <spring.datasource.username>postgres</spring.datasource.username>
         <spring.datasource.password>postgres</spring.datasource.password>
 
+        <spring-cloud-version>Hoxton.RELEASE</spring-cloud-version>
+        <spring-cloud-contract.version>2.0.2.RELEASE</spring-cloud-contract.version>
+
         <micrometer-jvm-extras.version>0.2.0</micrometer-jvm-extras.version>
         <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
         <annotations.version>16.0.3</annotations.version>
-        <spring-cloud-version>Hoxton.RELEASE</spring-cloud-version>
         <jooq.version>3.13.0</jooq.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <spring.datasource.url>jdbc:postgresql://localhost:5432/users</spring.datasource.url>
+                <spring.datasource.username>admin</spring.datasource.username>
+                <spring.datasource.password>password</spring.datasource.password>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencyManagement>
         <dependencies>
@@ -139,16 +153,30 @@
             <scope>test</scope>
             <exclusions>
                 <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
+                    <artifactId>asm</artifactId>
+                    <groupId>org.ow2.asm</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.restdocs</groupId>
-            <artifactId>spring-restdocs-mockmvc</artifactId>
-            <scope>test</scope>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
+			<scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jaxb-osgi</artifactId>
+                    <groupId>com.sun.xml.bind</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-contract-wiremock</artifactId>
+			<scope>test</scope>
+		</dependency>
+
     </dependencies>
 
     <build>
@@ -208,7 +236,7 @@
                             <pojos>true</pojos>
                         </generate>
                         <target>
-                            <packageName>ru.iunusov.db</packageName>
+                            <packageName>ru.iunusov.testbench.users.db</packageName>
                             <directory>target/generated-sources/jooq</directory>
                         </target>
                     </generator>
@@ -242,6 +270,16 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                <version>${spring-cloud-contract.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <baseClassForTests>ru.iunusov.testbench.users.BaseClassForContractTest</baseClassForTests>
+                </configuration>
             </plugin>
         </plugins>
     </build>

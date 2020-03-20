@@ -1,4 +1,4 @@
-package ru.iunusov.user.web;
+package ru.iunusov.testbench.users.web;
 
 import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;

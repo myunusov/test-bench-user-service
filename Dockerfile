@@ -1,12 +1,4 @@
-FROM adoptopenjdk/openjdk11:jdk-11.0.5_10-alpine as builder
-RUN apk update && \
-    apk add su-exec tzdata libpq postgresql-client postgresql postgresql-contrib && \
-    rm -rf /var/cache/apk/*
-
-ENV POSTGRES_USER postgres
-ENV POSTGRES_DB postgres
-ENV POSTGRES_PASSWORD postgres
-ENV PGDATA /var/lib/postgresql/data
+FROM maxur/openjdk11-postgesql as builder
 
 ADD . /src
 RUN ["chmod", "-R", "777", "/src"]
@@ -31,7 +23,7 @@ RUN /usr/lib/jvm/java-11-openjdk/bin/jlink \
 FROM alpine:3.10.3
 LABEL maintainer="Maksim Iunusov maksim@iunusov.ru"
 ENV JAVA_HOME=/opt/java-minimal
-ENV PATH="$PATH:$JAVA_HOME/bin"
+ENV PATH="$PATH:$JAVA_HOME/bin"c
 COPY --from=packager "$JAVA_HOME" "$JAVA_HOME"
 COPY --from=builder /src/target/user-*.jar app.jar
 EXPOSE 8080

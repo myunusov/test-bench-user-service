@@ -1,4 +1,4 @@
-package ru.iunusov.user.domain;
+package ru.iunusov.testbench.users.domain;
 
 import java.util.Objects;
 

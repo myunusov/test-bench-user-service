@@ -1,4 +1,4 @@
-package ru.iunusov.user.web;
+package ru.iunusov.testbench.users.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,8 +6,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import ru.iunusov.user.domain.User;
-import ru.iunusov.user.service.UserService;
+import ru.iunusov.testbench.users.domain.User;
+import ru.iunusov.testbench.users.service.UserService;
+
 import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
@@ -27,7 +28,8 @@ public class UserControllerTests {
 
   @Test
   public void users() throws Exception {
-    when(service.findAllUsers()).thenReturn(singletonList(new User("id", "name", "name@mail.com")));
+    when(service.findAllUsers())
+            .thenReturn(singletonList(new User("id", "name", "name@mail.com")));
     mockMvc
         .perform(get("/users"))
         .andDo(print())

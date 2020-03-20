@@ -1,13 +1,12 @@
-package ru.iunusov.user.web;
+package ru.iunusov.testbench.users.web;
 
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.iunusov.user.domain.User;
-import ru.iunusov.user.service.UserService;
+import ru.iunusov.testbench.users.domain.User;
+import ru.iunusov.testbench.users.service.UserService;
 
 @RestController
 @RequiredArgsConstructor
