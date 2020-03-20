@@ -13,7 +13,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
-      - run: chmod -R 777 /src && ./mvnw dependency:go-offline
+      - run: chmod -R 777 ./mvnw && ./mvnw dependency:go-offline
       - save_cache:
           paths:
             - ~/.m2
@@ -29,12 +29,12 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
-      - run: ./mvnw dependency:go-offline
+      - run: chmod -R 777 ./mvnw && ./mvnw dependency:go-offline
       - save_cache:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
-      - run: chmod -R 777 /src && pg_ctl start -D /var/lib/postgresql/data -l /var/lib/postgresql/log.log && cd ./src && ./mvnw verify -X
+      - run: chmod -R 777 ./mvnw && pg_ctl start -D /var/lib/postgresql/data -l /var/lib/postgresql/log.log && ./mvnw verify -X
   #      - run: bash <(curl -s https://codecov.io/bash)
 
 workflows:
