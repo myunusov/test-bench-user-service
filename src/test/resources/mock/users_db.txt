@@ -1,0 +1,7 @@
+# See https://blog.jooq.org/tag/unit-tests/
+# Find All
+select "public"."users"."id", "public"."users"."name", "public"."users"."email" from "public"."users";
+> id name email
+> -- ---- -------------
+> id name name@mail.com
+@ rows: 1

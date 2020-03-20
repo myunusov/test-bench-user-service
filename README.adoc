@@ -1,0 +1,13 @@
+image:https://raw.githubusercontent.com/wiki/myunusov/maxur-mserv/maxur-logo.png[Logo]
+
+[[user-μservice]]
+= User μService
+
+*test-bench-user-service*
+
+Test bench: user service
+
+https://github.com/myunusov/maxur-mserv/blob/master/LICENSE[image:https://img.shields.io/badge/License-Apache%202.0-blue.svg[License]]
+
+https://quay.io/repository/maximyunusov/test-bench-user-service[image:https://quay.io/repository/maximyunusov/test-bench-user-service/status[Docker Repository on Quay]]
+
