@@ -1,7 +1,7 @@
 FROM maxur/openjdk11-postgesql as builder
 
 ADD . /src
-RUN ["chmod", "-R", "777", "/src"]
+RUN ["chmod", "777", "/src/mvnw"]
 
 USER postgres
 RUN initdb -A trust -D /var/lib/postgresql/data
