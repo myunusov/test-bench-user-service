@@ -2,7 +2,7 @@ FROM maxur/openjdk11-postgesql as builder
 
 USER root
 ADD . /src
-RUN ["chmod", "777", "/src/mvnw"]
+RUN ["chmod", "777", "-R", "/src"]
 
 USER postgres
 RUN pg_ctl start -D /var/lib/postgresql/data -l /var/lib/postgresql/log.log && cd ./src && ./mvnw package -DskipTests
