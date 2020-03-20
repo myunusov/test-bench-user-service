@@ -22,6 +22,11 @@ RUN /usr/lib/jvm/java-11-openjdk/bin/jlink \
 
 FROM alpine:3.10.3
 LABEL maintainer="Maksim Iunusov maksim@iunusov.ru"
+
+# Add Tini (see https://github.com/krallin/tini)
+RUN apk add --no-cache tini
+ENTRYPOINT ["/sbin/tini", "--"]
+
 ENV JAVA_HOME=/opt/java-minimal
 ENV PATH="$PATH:$JAVA_HOME/bin"c
 COPY --from=packager "$JAVA_HOME" "$JAVA_HOME"
