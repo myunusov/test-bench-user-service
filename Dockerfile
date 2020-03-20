@@ -1,11 +1,10 @@
 FROM maxur/openjdk11-postgesql as builder
 
+USER root
 ADD . /src
 RUN ["chmod", "777", "/src/mvnw"]
 
 USER postgres
-RUN initdb -A trust -D /var/lib/postgresql/data
-COPY ./postgres/postgresql.conf /var/lib/postgresql/data/postgresql.conf
 RUN pg_ctl start -D /var/lib/postgresql/data -l /var/lib/postgresql/log.log && cd ./src && ./mvnw package -DskipTests
 
 FROM alpine:3.10.3 as packager
