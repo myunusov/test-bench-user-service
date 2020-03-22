@@ -35,8 +35,9 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
       - run: chmod -R 777 ./mvnw && pg_ctl start -D /var/lib/postgresql/data -l /var/lib/postgresql/log.log && ./mvnw verify -X -P jacoco
-      - codecov/upload:
-          file: ./target/coverage-reports/jacoco-ut.exec
+      - run:
+          name: Send to CodeCov
+          command: bash <(curl -s https://codecov.io/bash)
 
 workflows:
   version: 2
