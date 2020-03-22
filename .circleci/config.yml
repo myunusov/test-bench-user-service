@@ -37,12 +37,7 @@ jobs:
       - run: chmod -R 777 ./mvnw && pg_ctl start -D /var/lib/postgresql/data -l /var/lib/postgresql/log.log && ./mvnw verify -X -P jacoco
       - run:
           name: Upload Coverage Results
-          command: |
-            set -e
-            curl -s https://codecov.io/bash --show-error | bash -s -- \
-              -f "./target/coverage-reports/jacoco-ut.exec" \
-              -t "31575ed1-3c95-44d0-85d3-66d1ee2ac724" \
-              -Z || echo 'Codecov upload failed'
+          command: bash <(curl -s https://codecov.io/bash)
 
 workflows:
   version: 2
