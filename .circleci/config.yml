@@ -44,9 +44,6 @@ jobs:
               -t "31575ed1-3c95-44d0-85d3-66d1ee2ac724" \
               -Z || echo 'Codecov upload failed'
 
-      - codecov/upload:
-          file: ./target/coverage-reports/jacoco-ut.exec
-
 workflows:
   version: 2
   build_and_test:
