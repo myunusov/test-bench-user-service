@@ -22,6 +22,7 @@ jobs:
   test:
     docker:
       - image: maxur/openjdk11-postgesql
+        user: postgres
     working_directory: ~/repo
     steps:
       - checkout
