@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   build:
     docker:
@@ -35,9 +37,8 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
       - run: chmod -R 777 ./mvnw && pg_ctl start -D /var/lib/postgresql/data -l /var/lib/postgresql/log.log && ./mvnw verify -X -P jacoco
-      - run:
-          name: Send to CodeCov
-          command: bash <(curl -s https://codecov.io/bash)
+      - codecov/upload:
+          file: ./target/coverage-reports/jacoco-ut.exec
 
 workflows:
   version: 2
