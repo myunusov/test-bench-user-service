@@ -1,13 +1,12 @@
 name: merge-pull-request
 
 on:
-  pull_request:
+  check_suite:
     types:
-      - synchronize
-      - opened
+      - completed
     branches:
-    - dev
-    - master
+      - dev
+      - master
 jobs:
   mergepal-merge:
     runs-on: ubuntu-latest
