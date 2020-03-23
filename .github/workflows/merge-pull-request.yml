@@ -15,6 +15,4 @@ jobs:
       - uses: maxkomarychev/merge-pal-action@v0.5.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          whitelist:
-            - auto
           method: squash
