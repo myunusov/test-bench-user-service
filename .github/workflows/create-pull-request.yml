@@ -4,17 +4,17 @@ on:
   push:
     branches: 
     - dev 
-jobs: 
-  build:
+jobs:
+  pull-request:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: GitHub Pull Request Action
-      uses: repo-sync/pull-request@v2.0.1
-      with:
-        pr_title: 'PR'
-        pr_label: auto
-        pr_body: >
-          This PR is auto-generated
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v1
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ""                     # If blank, default: triggered branch
+          destination_branch: "master"          # If blank, default: master
+          pr_title: "Pulling ${{ github.ref }} into master"
+          pr_body: ":crown: *An automated PR*"  # Full markdown support, requires pr_title to be set
+          pr_label: "auto"                      # Comma-separated list (no spaces)
+          github_token: ${{ secrets.GITHUB_TOKEN }}
