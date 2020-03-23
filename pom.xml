@@ -63,6 +63,7 @@
         <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
         <annotations.version>16.0.3</annotations.version>
         <jooq.version>3.13.0</jooq.version>
+        <equalsverifier.version>3.1.13</equalsverifier.version>
     </properties>
 
     <profiles>
@@ -328,6 +329,13 @@
 			<artifactId>spring-cloud-contract-wiremock</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>nl.jqno.equalsverifier</groupId>
+            <artifactId>equalsverifier</artifactId>
+            <version>${equalsverifier.version}</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
