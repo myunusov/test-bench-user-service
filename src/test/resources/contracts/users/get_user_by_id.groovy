@@ -3,10 +3,10 @@ package contracts.users
 import org.springframework.cloud.contract.spec.Contract
 
 Contract.make {
-    description "should return all users"
+    description "should return user by id"
 
     request {
-        url "/users"
+        url "/users/1"
         method GET()
     }
 
@@ -15,13 +15,25 @@ Contract.make {
         headers {
             contentType applicationJson()
         }
-        body (
-                """
-                [{
+        body ("""
+                {
                     "id": "1",
                     "name": "name",
                     "email": "name@mail.com"
-                }]
+                }
         """)
+    }
+}
+
+Contract.make {
+    description "should return 'Not Found Error' by unknown id"
+
+    request {
+        url "/users/2"
+        method GET()
+    }
+
+    response {
+        status NOT_FOUND()
     }
 }

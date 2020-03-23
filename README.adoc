@@ -14,3 +14,5 @@ https://quay.io/repository/maximyunusov/test-bench-user-service[image:https://qu
 image:https://circleci.com/gh/myunusov/test-bench-user-service.svg?style=svg["CircleCI", link="https://circleci.com/gh/myunusov/test-bench-user-service"]
 
 https://codecov.io/gh/myunusov/test-bench-user-service[image:https://codecov.io/gh/myunusov/test-bench-user-service/branch/master/graph/badge.svg[codecov]]
+
+https://codebeat.co/projects/github-com-myunusov-test-bench-user-service-master[image:https://codebeat.co/badges/4a22db99-d410-41f2-aa2a-acea220e5dae[codebeat]]
