@@ -10,13 +10,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
-  - name: GitHub Pull Request Action
-    uses: repo-sync/pull-request@v2.0.1
-    with:
-      pr_title: 'PR'
-      pr_label: auto
-      pr_body: >
-        This PR is auto-generated
-      github_token: ${{ secrets.GITHUB_TOKEN }}
-
+    - name: GitHub Pull Request Action
+      uses: repo-sync/pull-request@v2.0.1
+      with:
+        pr_title: 'PR'
+        pr_label: auto
+        pr_body: >
+          This PR is auto-generated
+        github_token: ${{ secrets.GITHUB_TOKEN }}
