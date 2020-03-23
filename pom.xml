@@ -439,18 +439,6 @@
                             </sources>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>add-test-contracts-sources</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-test-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.build.directory}/generated-test-sources/contracts/</source>
-                            </sources>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
 
