@@ -1,8 +1,9 @@
 package ru.iunusov.testbench.users.domain;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EntityTest {
 
@@ -16,11 +17,11 @@ class EntityTest {
 
   @Test
   public void createWithNullId() {
-    Assertions.assertThrows(NullPointerException.class, () -> new Entity(null, "name") {});
+    assertThrows(NullPointerException.class, () -> new Entity(null, "name") {});
   }
 
   @Test
   public void createWithNullName() {
-    Assertions.assertThrows(NullPointerException.class, () -> new Entity("id", null) {});
+    assertThrows(NullPointerException.class, () -> new Entity("id", null) {});
   }
 }

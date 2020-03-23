@@ -3,11 +3,13 @@ package ru.iunusov.testbench.users.domain;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.util.Objects;
 
 @RequiredArgsConstructor
 @Getter
+@ToString
 public abstract class Entity {
 
   @NonNull

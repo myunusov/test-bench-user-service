@@ -3,5 +3,18 @@
 select "public"."users"."id", "public"."users"."name", "public"."users"."email" from "public"."users";
 > id name email
 > -- ---- -------------
-> id name name@mail.com
+> 1  name name@mail.com
 @ rows: 1
+
+# Get By ID
+select "public"."users"."id", "public"."users"."name", "public"."users"."email" from "public"."users" where "public"."users"."id" = '1';
+> id name email
+> -- ---- -------------
+> 1  name name@mail.com
+@ rows: 1
+
+# Get By unknown ID
+select "public"."users"."id", "public"."users"."name", "public"."users"."email" from "public"."users" where "public"."users"."id" = '2';
+> id name email
+> -- ---- -------------
+@ rows: 0

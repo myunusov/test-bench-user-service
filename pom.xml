@@ -64,6 +64,7 @@
         <annotations.version>16.0.3</annotations.version>
         <jooq.version>3.13.0</jooq.version>
         <equalsverifier.version>3.1.13</equalsverifier.version>
+        <to-string-verifier.version>1.4.8</to-string-verifier.version>
     </properties>
 
     <profiles>
@@ -336,6 +337,15 @@
             <version>${equalsverifier.version}</version>
             <scope>test</scope>
         </dependency>
+
+
+        <dependency>
+            <groupId>com.jparams</groupId>
+            <artifactId>to-string-verifier</artifactId>
+            <version>${to-string-verifier.version}</version>
+            <scope>test</scope>
+        </dependency>
+
 
     </dependencies>
 

@@ -1,5 +1,6 @@
 package ru.iunusov.testbench.users;
 
+import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,31 +8,44 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import io.restassured.module.mockmvc.RestAssuredMockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import ru.iunusov.testbench.users.config.ServiceTestConfiguration;
 import ru.iunusov.testbench.users.domain.User;
+import ru.iunusov.testbench.users.service.NotFoundException;
 import ru.iunusov.testbench.users.service.UserService;
+import ru.iunusov.testbench.users.web.ErrorAdvice;
 import ru.iunusov.testbench.users.web.UserController;
 
 import static java.util.Collections.singletonList;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(value = {"spring.main.allow-bean-definition-overriding=true"}, classes = ServiceTestConfiguration.class)
+@SpringBootTest(
+    value = {"spring.main.allow-bean-definition-overriding=true"},
+    classes = ServiceTestConfiguration.class)
 @ActiveProfiles("test")
 public abstract class BaseClassForContractTest {
 
-  @Autowired
-  UserController controller;
+  public static final User FAKE_USER = new User("1", "name", "name@mail.com");
 
-  @MockBean
-  UserService service;
+  @Autowired UserController controller;
+
+  @Autowired ErrorAdvice controllerAdvice;
+
+  @MockBean UserService service;
 
   @Before
   public void setup() {
-    RestAssuredMockMvc.standaloneSetup(controller);
-      when(service.findAllUsers())
-              .thenReturn(singletonList(new User("id", "name", "name@mail.com")));
+    RestAssuredMockMvc
+            .standaloneSetup(
+                    MockMvcBuilders
+                    .standaloneSetup(controller)
+                    .setControllerAdvice(controllerAdvice));
+
+    when(service.findAllUsers()).thenReturn(singletonList(FAKE_USER));
+    when(service.getUserBy("1")).thenReturn(FAKE_USER);
+    when(service.getUserBy("2")).thenThrow(new NotFoundException("User '2' is not found"));
   }
+
+
 }

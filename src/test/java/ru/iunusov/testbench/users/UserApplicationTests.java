@@ -5,7 +5,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import ru.iunusov.testbench.users.config.ServiceTestConfiguration;
 
-@SpringBootTest(value = {"spring.main.allow-bean-definition-overriding=true"}, classes = ServiceTestConfiguration.class)
+@SpringBootTest(
+        value = {"spring.main.allow-bean-definition-overriding=true"},
+        classes = {UserApplication.class, ServiceTestConfiguration.class}
+        )
 @ActiveProfiles("test")
 class UserApplicationTests {
 
