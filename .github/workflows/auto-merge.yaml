@@ -1,0 +1,25 @@
+name: Auto Merge
+
+on:
+  check_suite:
+    types:
+      - completed
+  pull_request:
+    types:
+      - edited
+      - labeled
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
+      - unlabeled
+      - unlocked
+
+jobs:
+  merge-me:
+    name: Auto Merge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto Merge
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
