@@ -13,4 +13,5 @@ jobs:
       - name: Auto Merge
         uses: ridedott/merge-me-action@master
         with:
+          uses: ridedott/merge-me-action@master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
