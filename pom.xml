@@ -67,6 +67,7 @@
         <to-string-verifier.version>1.4.8</to-string-verifier.version>
         <springdoc-openapi-maven-plugin.version>0.3</springdoc-openapi-maven-plugin.version>
         <springdoc-openapi-ui.version>1.3.0</springdoc-openapi-ui.version>
+        <MutabilityDetector.version>0.10.3</MutabilityDetector.version>
     </properties>
 
     <profiles>
@@ -357,6 +358,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.mutabilitydetector</groupId>
+            <artifactId>MutabilityDetector</artifactId>
+            <version>${MutabilityDetector.version}</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 

@@ -1,20 +1,21 @@
 # See https://blog.jooq.org/tag/unit-tests/
 # Find All
-select "public"."users"."id", "public"."users"."name", "public"."users"."email" from "public"."users";
-> id name email
-> -- ---- -------------
-> 1  name name@mail.com
+select "public"."users"."id", "public"."users"."name", "public"."users"."first_name", "public"."users"."last_name", "public"."users"."middle_name", "public"."users"."email", "public"."departments"."name", "public"."departments"."manager_id" from "public"."users" left outer join "public"."departments" on "public"."departments"."id" = "public"."users"."department_id";
+> id users.name first_name last_name middle_name email         departments.name manager_id
+> -- ---------- ---------- --------- ----------- ------------- ---------------- ----------
+> 1  name       Ivan       Ivanov    Ivanovich   name@mail.com it               1
 @ rows: 1
 
+
 # Get By ID
-select "public"."users"."id", "public"."users"."name", "public"."users"."email" from "public"."users" where "public"."users"."id" = '1';
-> id name email
-> -- ---- -------------
-> 1  name name@mail.com
+select "public"."users"."id", "public"."users"."name", "public"."users"."first_name", "public"."users"."last_name", "public"."users"."middle_name", "public"."users"."email", "public"."departments"."name", "public"."departments"."manager_id" from "public"."users" left outer join "public"."departments" on "public"."departments"."id" = "public"."users"."department_id" where "public"."users"."id" = '1';
+> id users.name first_name last_name middle_name email         departments.name manager_id
+> -- ---------- ---------- --------- ----------- ------------- ---------------- ----------
+> 1  name       Ivan       Ivanov    Ivanovich   name@mail.com it               1
 @ rows: 1
 
 # Get By unknown ID
-select "public"."users"."id", "public"."users"."name", "public"."users"."email" from "public"."users" where "public"."users"."id" = '2';
-> id name email
-> -- ---- -------------
+select "public"."users"."id", "public"."users"."name", "public"."users"."first_name", "public"."users"."last_name", "public"."users"."middle_name", "public"."users"."email", "public"."departments"."name", "public"."departments"."manager_id" from "public"."users" left outer join "public"."departments" on "public"."departments"."id" = "public"."users"."department_id" where "public"."users"."id" = '2';
+> id users.name email         departments.name manager_id
+> -- ---------- ------------- ---------------- ----------
 @ rows: 0

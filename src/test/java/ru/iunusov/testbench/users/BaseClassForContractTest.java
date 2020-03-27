@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import ru.iunusov.testbench.users.config.ServiceTestConfiguration;
+import ru.iunusov.testbench.users.domain.Department;
 import ru.iunusov.testbench.users.domain.User;
 import ru.iunusov.testbench.users.service.NotFoundException;
 import ru.iunusov.testbench.users.service.UserService;
@@ -26,7 +27,14 @@ import static org.mockito.Mockito.when;
 @ActiveProfiles("test")
 public abstract class BaseClassForContractTest {
 
-  public static final User FAKE_USER = new User("1", "name", "name@mail.com");
+  public static final User FAKE_USER = User.builder()
+          .id("1")
+          .name("name")
+          .firstName("Ivan")
+          .lastName("Ivanov")
+          .email("name@mail.com")
+          .department(new Department("department", "1"))
+          .build();
 
   @Autowired UserController controller;
 

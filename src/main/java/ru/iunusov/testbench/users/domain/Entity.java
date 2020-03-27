@@ -18,16 +18,14 @@ public abstract class Entity {
 
   @NonNull
   @NotBlank
-  @Size(min = 3, max = 50)
-  @UniqueElements
-  @Schema(title = "Unique identifier of user")
+  @Size(min = 3, max = 36)
+  @Schema(title = "Unique identifier of resource")
   private final String id;
 
   @NonNull
   @NotBlank
-  @Size(min = 1, max = 50)
-  @UniqueElements
-  @Schema(title = "Unique name of user", example = "user01")
+  @Size(min = 1, max = 255)
+  @Schema(title = "Unique name of resource")
   private final String name;
 
   @Override
