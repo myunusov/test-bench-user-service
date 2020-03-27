@@ -40,8 +40,8 @@ public class User extends Entity {
 
   @Builder
   private User(
-      @NonNull final String id,
-      @NonNull final String name,
+      final String id,
+      final String name,
       @NonNull final String firstName,
       @NonNull final String lastName,
       final String middleName,
