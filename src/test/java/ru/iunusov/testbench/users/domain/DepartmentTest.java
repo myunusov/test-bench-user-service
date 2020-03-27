@@ -2,6 +2,7 @@ package ru.iunusov.testbench.users.domain;
 
 import com.jparams.verifier.tostring.NameStyle;
 import com.jparams.verifier.tostring.ToStringVerifier;
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +14,11 @@ class DepartmentTest {
   @Test
   public void checkMyClassIsImmutable() {
     assertImmutable(Department.class);
+  }
+
+  @Test
+  public void equalsContract() {
+      EqualsVerifier.forClass(Department.class).verify();
   }
 
   @Test
