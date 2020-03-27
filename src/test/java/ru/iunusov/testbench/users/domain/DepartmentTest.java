@@ -16,10 +16,10 @@ class DepartmentTest {
     assertImmutable(Department.class);
   }
 
-    @Test
-    public void equalsContract() {
-        EqualsVerifier.forClass(Department.class).verify();
-    }
+  @Test
+  public void equalsContract() {
+      EqualsVerifier.forClass(Department.class).verify();
+  }
 
   @Test
   public void testToString() {
