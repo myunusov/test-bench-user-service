@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
