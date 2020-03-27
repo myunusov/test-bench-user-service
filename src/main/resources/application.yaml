@@ -49,3 +49,19 @@ logging:
     org.springframework.web: INFO
     guru.springframework.controllers: INFO
 
+---
+
+spring:
+  profiles: local
+  datasource:
+    url: @spring.datasource.url@
+    username: @spring.datasource.username@
+    password: @spring.datasource.password@
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: "ALWAYS"
+

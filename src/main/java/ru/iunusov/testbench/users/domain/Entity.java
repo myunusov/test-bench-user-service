@@ -1,10 +1,14 @@
 package ru.iunusov.testbench.users.domain;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import org.hibernate.validator.constraints.UniqueElements;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @RequiredArgsConstructor
@@ -13,8 +17,17 @@ import java.util.Objects;
 public abstract class Entity {
 
   @NonNull
+  @NotBlank
+  @Size(min = 3, max = 50)
+  @UniqueElements
+  @Schema(title = "Unique identifier of user")
   private final String id;
+
   @NonNull
+  @NotBlank
+  @Size(min = 1, max = 50)
+  @UniqueElements
+  @Schema(title = "Unique name of user", example = "user01")
   private final String name;
 
   @Override
