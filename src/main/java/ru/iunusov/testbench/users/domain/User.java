@@ -30,7 +30,6 @@ public class User extends Entity {
   @Schema(title = "Middle name of user")
   private final String middleName;
 
-  @Schema(title = "Department of user")
   @NonNull
   private Department department;
 

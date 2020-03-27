@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Value
+@Schema(title = "Department")
 public class Department {
 
     @NonNull
